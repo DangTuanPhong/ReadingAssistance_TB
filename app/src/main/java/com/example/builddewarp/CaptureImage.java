@@ -299,12 +299,12 @@ public class CaptureImage extends AppCompatActivity {
                 }
                 process(mymat);
                 //String result = imageToText.doInBackground(bit);
+                Intent intent = new Intent(CaptureImage.this, ResultActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("Image", Environment.getExternalStorageDirectory().getPath() +"/" + ROOT_FOLDER + "/"+PHOTO_FOLDER+"/"+ fileDewarp);
                 //ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                 //bit.compress(Bitmap.CompressFormat.PNG, 100, bStream);
                 //byte[] byteArray = bStream.toByteArray();
-                Intent intent = new Intent(CaptureImage.this, ResultActivity.class);
                 //intent.putExtra("Image", bit);
                 intent.putExtras(bundle);
 
@@ -375,8 +375,8 @@ public class CaptureImage extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        toSpeech.shutdown();
         super.onStop();
+        toSpeech.shutdown();
     }
 
     private boolean mFlashSupported;

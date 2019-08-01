@@ -13,6 +13,20 @@
     tools:context="com.example.builddewarp.MainActivity">
 
     <TextView
+        android:id="@+id/txt_bar"
+        android:importantForAccessibility="no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/label_normal"
+        android:text="Bạn chưa bật TalkBack"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        tools:targetApi="jelly_bean"/>
+    //android:visibility="gone"
+    <TextView
+        android:layout_below="@+id/txt_bar"
         android:id="@+id/tvLanguage"
         android:text="@string/language"
         android:layout_width="180dp"
@@ -20,6 +34,7 @@
         android:textSize="20sp"/>
 
     <android.support.v7.widget.AppCompatSpinner
+        android:layout_below="@+id/txt_bar"
         android:layout_toEndOf="@+id/tvLanguage"
         android:id="@+id/spn_language"
         android:layout_width="match_parent"

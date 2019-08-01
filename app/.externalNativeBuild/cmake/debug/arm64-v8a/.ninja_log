@@ -1,7 +1,8 @@
 # ninja log v5
-0	1312	0	CMakeFiles/preprocess.dir/C_preprocess.cpp.o	64f42996b171e84a
-0	2193	0	CMakeFiles/preprocess.dir/page_dewarp.cpp.o	51981fa87e65f372
-2193	2291	0	/home/quyenpham/MyApplication/app/build/intermediates/cmake/debug/obj/arm64-v8a/libpreprocess.so	c85cc5bd17d8660c
-0	1882	0	CMakeFiles/preprocess.dir/C_preprocess.cpp.o	64f42996b171e84a
-0	3034	0	CMakeFiles/preprocess.dir/page_dewarp.cpp.o	51981fa87e65f372
-3034	3181	0	/home/quyenpham/MyApplication/app/build/intermediates/cmake/debug/obj/arm64-v8a/libpreprocess.so	c85cc5bd17d8660c
+4	6167	0	CMakeFiles/preprocess.dir/C_preprocess.cpp.o	6c6fff9063927731
+21	8012	0	CMakeFiles/preprocess.dir/page_dewarp.cpp.o	4980c299a2a45773
+8013	8514	0	C:/Users/PC/AndroidStudioProjects/ReadingAssistance_TB/app/build/intermediates/cmake/debug/obj/arm64-v8a/libpreprocess.so	757fb5787025bc73
+11	457	0	build.ninja	13d464841d46d2d1
+18	4535	0	CMakeFiles/preprocess.dir/C_preprocess.cpp.o	a78a0edf9f090322
+12	6063	0	CMakeFiles/preprocess.dir/page_dewarp.cpp.o	e15f9cc99883cf57
+6063	6552	0	C:/Users/PC/AndroidStudioProjects/ReadingAssistance_TB/app/build/intermediates/cmake/debug/obj/arm64-v8a/libpreprocess.so	362743c073746165

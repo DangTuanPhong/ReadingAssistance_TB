@@ -17,6 +17,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 import static com.example.quyenpham.R.id.activity_result;
+import static com.example.quyenpham.R.id.visible;
 
 public class ResultActivity extends AppCompatActivity {
     public static final String ROOT_FOLDER = "Reading Assistance";
@@ -40,12 +42,12 @@ public class ResultActivity extends AppCompatActivity {
     TextView tvResult;
     Button btnNext;
     String content;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        RelativeLayout mh = (RelativeLayout) findViewById(activity_result);
         tvResult = findViewById(R.id.tv_result);
         btnNext = findViewById(R.id.btn_Next);
 
@@ -54,26 +56,30 @@ public class ResultActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         assert bundle != null;
-        final String fileImage = bundle.getString("Image");
+         String fileImage = bundle.getString("Image");
         //Log.d("Quyen", fileImage);
         //assert content != null;
         //final CharSequence charSequence = new StringBuffer(content);
         File imgFile = new  File(fileImage);
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            final Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     tvResult.setText("");
                 }
-            }, 5000);
+            }, 1000);
             new ImageToText(ResultActivity.this, tvResult).execute(myBitmap);
-            content = tvResult.getText().toString();
+            textToSpeech = new TextToSpeech(ResultActivity.this, new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    textToSpeech.speak(content = tvResult.getText().toString(), TextToSpeech.QUEUE_FLUSH,null);
+                }
+            });
         }
+        //content = tvResult.getText().toString();
         tvResult.setMovementMethod(new ScrollingMovementMethod());
-
-        //RelativeLayout relativeLayout = (RelativeLayout) findViewById(activity_result);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,11 +135,11 @@ public class ResultActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onPause() {
-        if (textToSpeech != null){
-            textToSpeech.stop();
+    protected void onStop() {
+        super.onStop();
+        if (textToSpeech != null) {
+            textToSpeech.shutdown();
         }
-        super.onPause();
     }
 }
 
