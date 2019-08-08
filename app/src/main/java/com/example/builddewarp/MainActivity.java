@@ -25,7 +25,6 @@ import java.util.UUID;
 import static com.example.quyenpham.R.id.activity_main;
 
 public class MainActivity extends AppCompatActivity {
-    private TextToSpeech textToSpeech;
     final CharSequence xin_chao = "Xin chào, vui lòng lựa chọn rồi nhấn vào nút Camera để chụp ảnh";
     String utteranceId = UUID.randomUUID().toString();
     Button btnCamera;

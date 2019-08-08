@@ -376,7 +376,13 @@ public class CaptureImage extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         toSpeech.shutdown();
+
     }
 
     private boolean mFlashSupported;

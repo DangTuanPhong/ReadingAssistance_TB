@@ -1,7 +1,6 @@
 package com.example.builddewarp;
 
-import android.annotation.TargetApi;
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,12 +27,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.UUID;
 
-import static com.example.quyenpham.R.id.activity_result;
-import static com.example.quyenpham.R.id.visible;
 
 public class ResultActivity extends AppCompatActivity {
     public static final String ROOT_FOLDER = "Reading Assistance";
@@ -42,7 +36,6 @@ public class ResultActivity extends AppCompatActivity {
     TextView tvResult;
     Button btnNext;
     String content;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +67,12 @@ public class ResultActivity extends AppCompatActivity {
             textToSpeech = new TextToSpeech(ResultActivity.this, new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int status) {
-                    textToSpeech.speak(content = tvResult.getText().toString(), TextToSpeech.QUEUE_FLUSH,null);
+                    content = tvResult.getText().toString();
+                    textToSpeech.speak(content, TextToSpeech.QUEUE_FLUSH, null);
+                    if(content ==null){
+                        tvResult.setText("vui lòng chụp lại ảnh");
+                        content = "vui lòng chụp lại ảnh";
+                    }
                 }
             });
         }
@@ -110,6 +108,7 @@ public class ResultActivity extends AppCompatActivity {
                         }
                         Intent intent = new Intent(ResultActivity.this, CaptureImage.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -117,6 +116,7 @@ public class ResultActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(ResultActivity.this, CaptureImage.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 builder.show();
